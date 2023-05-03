@@ -3,7 +3,27 @@ import shutil
 import requests,turtle
 from PIL import Image
 import os
-key = os.environ.get('OPENAI_API')
+def uinput() -> dict:
+    eye=input("Eye color? ").lower()
+    hair=input("Hair color? ").lower()
+    mouth=input("Mouth shape? ").lower()
+    style=input("Hair style? ").lower()
+    nose=input("Nose style? ").lower()
+    tache=input("Moustache style? ").lower()
+    general=input("Style? ").lower()
+    to_ret={
+        "eye":eye,
+        "hair":hair,
+        "mouth":mouth,
+        "hairstyle":style,
+        "nose":nose,
+        "moustache":tache,
+        "style":general
+    }
+    return to_ret
+f = open("openai.api", "r")
+key=f.readline()
+f.close()
 openai.api_key=key
 f=True
 while f:
@@ -23,9 +43,10 @@ if not option:
     style=input("Hair style? ").lower()
     nose=input("Nose style? ").lower()
     tache=input("Moustache style? ").lower()
+    general=input("Style? ").lower()
     response = openai.Image.create(
     prompt=
-    f"a face with {eye} eyes. big {hair}, {style} hair. a {mouth} mouth shape. a {nose} nose with a {tache} moustache. drawn by a programmer learning python (as if with the turtle module)",
+    f"a face with {eye} eyes. big {hair}, {style} hair. a {mouth} mouth shape. a {nose} nose with a {tache} moustache. {general}",
     n=1,
     size="1024x1024"
     )
@@ -41,4 +62,5 @@ if not option:
     win = turtle.Screen()
     win.bgpic('img.gif')
 else:
-    print("This is in progress!")
+    print("Turtle mode activated")
+    metadata=uinput()
