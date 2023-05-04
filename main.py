@@ -44,9 +44,11 @@ if not option:
     nose=input("Nose style? ").lower()
     tache=input("Moustache style? ").lower()
     general=input("Style? ").lower()
+    prompt=   f"a face with {eye} eyes. {hair}, {style} hair. a {mouth} mouth shape. a {nose} nose with a {tache} moustache. {general}"
+    print(prompt)
     response = openai.Image.create(
-    prompt=
-    f"a face with {eye} eyes. big {hair}, {style} hair. a {mouth} mouth shape. a {nose} nose with a {tache} moustache. {general}",
+    prompt=prompt
+,
     n=1,
     size="1024x1024"
     )
